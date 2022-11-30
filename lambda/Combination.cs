@@ -8,14 +8,17 @@ namespace example.lambda
     public class LambdaHandler
     {
 
+        static List<List<int>> comb;
+        static bool[] alreadyUsed;
+
         public Stream Combination(int input,int index)
         {
 
-            CreateAndReturnPromotation(input,index);
+            return new MemoryStream(CreateAndReturnPromotation(input,index));
 
         }
 
-        static void CreateAndReturnPromotation(int length , int indexRes)
+        static List<int> CreateAndReturnPromotation(int length , int indexRes)
         {
             
             int[] arr = new int[length];
@@ -39,7 +42,7 @@ namespace example.lambda
                 Console.WriteLine("");
             }
             
-            return new MemoryStream(Encoding.UTF8.GetBytes(comb[indexRes-1]));
+            return comb[indexRes-1];
         }
         
         static void GetPromotation(int[] arr, int idx, List<int> rowInCombination)
